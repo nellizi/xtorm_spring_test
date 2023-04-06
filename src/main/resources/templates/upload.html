@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>XTORM API TEST</h2>
+
+<form th:action="@{''}" th:object="${postForm}" method="post" onclick="getHtml()">
+    <div>
+        <label >파일 입력</label>
+        <input type="text"  placeholder=" 파일선택">
+        <input type="submit" value="업로드" class="btn btn-primary my-2" style="background-color: #3C64B1; color: #ffffff; border-color: #3C64B1">
+    </div>
+</form>
+</body>
+</html>
