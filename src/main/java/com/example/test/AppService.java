@@ -4,8 +4,6 @@ import com.windfire.apis.asys.asysUsrElement;
 import com.windfire.apis.asysConnectData;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -52,12 +50,6 @@ public class AppService {
             inputStream.close();
         }
     }
-
-
-
-
-
-
 
     public void download(asysConnectData con){
         asysUsrElement uePage1 = new asysUsrElement(con);

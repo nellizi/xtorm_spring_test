@@ -8,26 +8,6 @@
 
 <script>
 
-function xtormtest(){
-
-    alert("upload");
-
-       $.ajax({
-                url: "/upload",
-                type: 'POST',
-                data: {
-                    filePath : "/createtest/hi.txt"
-                },
-                scess : function(data){
-                },
-                error : function(){
-                alert("파일 없음")
-                }
-       });
-
-}
-
-
 function file_upload_test(){
 
     var formData = new FormData($("#fileForm")[0]);
@@ -50,8 +30,14 @@ function file_upload_test(){
 
         }
     });
-
 }
+
+
+
+
+
+
+
 </script>
 
 <body>
@@ -66,12 +52,14 @@ function file_upload_test(){
 </form>
 -->
 
+
 <form method="POST" action="/upload" enctype="multipart/form-data" >
     <span class="file" id="file">
         <input type="file" name="uploadfile" multiple="multiple" >
         <input type="submit" value="올리기"/>
     </span>
 </form>
+
 
 
 </body>
