@@ -1,18 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+<script>
+
+function xtormtest(){
+
+    alert("upload");
+
+       $.ajax({
+                url: "/upload",
+                type: 'POST',
+                data: {
+                    filePath : "/createtest/hi.txt"
+                },
+                scess : function(data){
+                },
+                error : function(){
+                alert("파일 없음")
+                }
+       });
+
+}
+
+
+function file_upload_test(){
+
+    var formData = new FormData($("#fileForm")[0]);
+    console.log("work?");
+    console.log(FormData);
+
+    $.ajax({
+        type : 'post',
+        url : '/test/file/uploadAjax',
+        data : formData,
+        processData : false,
+        dataType : "json",
+        contentType : false,
+        async    : false,
+        success : function(data) {
+            alert("파일 업로드 성공.");
+        },
+        error : function(error) {
+            alert("파일 업로드에 실패하였습니다.");
+
+        }
+    });
+
+}
+</script>
+
 <body>
 <h2>XTORM API TEST</h2>
 
-<form th:action="@{''}" th:object="${postForm}" method="post" onclick="getHtml()">
-    <div>
-        <label >파일 입력</label>
-        <input type="text"  placeholder=" 파일선택">
-        <input type="submit" value="업로드" class="btn btn-primary my-2" style="background-color: #3C64B1; color: #ffffff; border-color: #3C64B1">
-    </div>
+<!--파일업로드 ajax version
+<form id="fileForm"  enctype="multipart/form-data" onsubmit="file_upload_test();">
+    <span class="file" id="file">
+        <input type="file" id="testUploadFile" name="file" >
+        <input type="submit" value="올리기"/>
+    </span>
 </form>
+-->
+
+<form method="POST" action="/upload" enctype="multipart/form-data" >
+    <span class="file" id="file">
+        <input type="file" name="uploadfile" multiple="multiple" >
+        <input type="submit" value="올리기"/>
+    </span>
+</form>
+
+
 </body>
 </html>
