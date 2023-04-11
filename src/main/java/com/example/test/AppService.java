@@ -52,7 +52,7 @@ public class AppService {
 
     public void download(asysConnectData con ){
         asysUsrElement uePage1 = new asysUsrElement(con);
-        String elementId = "";
+        String elementId = "2023040609335700";
         uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
         String localfile = "C:\\test\\0406_2down.txt";     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
@@ -75,16 +75,6 @@ public class AppService {
         else
             System.out.println("Success, download normal, " + uePage1.m_elementId);
 
-//        int ret = uePage1.getContent(output,"","");
-//        if (ret != 0)
-//            System.out.println("Error, download normal, " + uePage1.getLastError());
-//        else
-//            System.out.println("Success, download normal, " + uePage1.m_elementId);
-//        int data = 0;
-//        while((data = System.in.read()) !=-1){
-//            output.write(data);
-//
-//        output.close();
     }
 
     public void delete(asysConnectData con) {
@@ -99,6 +89,22 @@ public class AppService {
             System.out.println("Success, delete is done, " + uePage1.m_elementId);
         }
     }
+
+
+    public void deleteStream(asysConnectData con, String _elementId) throws IOException {
+        asysUsrElement uePage1 = new asysUsrElement(con);
+        String elementid = _elementId;
+        uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
+        int ret = uePage1.delete();
+
+        if (ret != 0) {
+            System.out.println("Error, failed to delete, " + uePage1.getLastError());
+        } else {
+            System.out.println("Success, delete is done, " + uePage1.m_elementId);
+        }
+    }
+
+
 
     public void replace(asysConnectData con){
         asysUsrElement uePage1 = new asysUsrElement(con);

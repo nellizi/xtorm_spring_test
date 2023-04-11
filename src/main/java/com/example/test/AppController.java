@@ -72,7 +72,7 @@ public class AppController {
 
     @PostMapping("/down")
     public String downloadToXtorm() {
-        System.out.println("upload");
+        System.out.println("down");
         appService.download(con);
 
         return "upload";
@@ -87,7 +87,6 @@ public class AppController {
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-                String elementId = file.getName();
                appService.downloadStream(con, file.getOriginalFilename());
 
             }
@@ -95,19 +94,32 @@ public class AppController {
         return "upload";
     }
 
-
-
     @PostMapping("/delete")
     public String deleteToXtorm() {
-        System.out.println("upload");
+        System.out.println("delete");
         appService.delete(con);
 
         return "upload";
     }
 
+    @PostMapping("/multipartDelete.do")
+    public String multipartDelete(MultipartHttpServletRequest request) throws Exception {
+
+        List<MultipartFile> fileList = request.getFiles("file");
+        System.out.println("ajax 삭제 url");
+
+        for(MultipartFile file : fileList){
+            if(!file.isEmpty()){
+                appService.deleteStream(con, file.getOriginalFilename());
+
+            }
+        }
+        return "upload";
+    }
+
     @PostMapping("/replace")
     public String replaceToXtorm() {
-        System.out.println("upload");
+        System.out.println("replace");
         appService.replace(con);
 
         return "upload";

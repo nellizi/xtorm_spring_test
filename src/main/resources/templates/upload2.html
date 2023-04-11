@@ -42,8 +42,29 @@ $.ajax({
 	contentType: false,
 	cache: false,
 	success: function (result) {
-	    console.log("ajax 업로드 성공");
-	    alert("파일 업로드 성공.");
+	    console.log("ajax 다운로드 성공");
+	    alert("파일 다운로드 성공.");
+	},
+	error: function (e) {
+	}
+});
+
+}
+
+function ajax_delete(){
+var formData = new FormData($('#deleteForm')[0]);
+
+$.ajax({
+	type: 'POST',
+	enctype: 'multipart/form-data',
+	url: '/multipartDelete.do',
+	data: formData,
+	processData: false,
+	contentType: false,
+	cache: false,
+	success: function (result) {
+	    console.log("ajax 삭제 성공");
+	    alert("파일 삭제 성공.");
 	},
 	error: function (e) {
 	}
@@ -65,6 +86,11 @@ $.ajax({
 <form id="downloadForm" enctype="multipart/form-data" onsubmit="ajax_download();">
     <input type="file" name="file" multiple="true" >
     <input type="submit" value="다운로드"/>
+</form>
+&nbsp; &nbsp; &nbsp;
+<form id="deleteForm" enctype="multipart/form-data" onsubmit="ajax_delete();">
+    <input type="file" name="file" multiple="true" >
+    <input type="submit" value="삭제"/>
 </form>
 
 
