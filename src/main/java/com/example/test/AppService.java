@@ -4,8 +4,7 @@ import com.windfire.apis.asys.asysUsrElement;
 import com.windfire.apis.asysConnectData;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 @Service
 public class AppService {
@@ -51,9 +50,9 @@ public class AppService {
         }
     }
 
-    public void download(asysConnectData con){
+    public void download(asysConnectData con ){
         asysUsrElement uePage1 = new asysUsrElement(con);
-        String elementId = "2023040609335700";
+        String elementId = "";
         uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
         String localfile = "C:\\test\\0406_2down.txt";     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
@@ -62,6 +61,30 @@ public class AppService {
             System.out.println("Error, download normal, " + uePage1.getLastError());
         else
             System.out.println("Success, download normal, " + uePage1.m_elementId);
+    }
+
+    public void downloadStream(asysConnectData con, String _elementId) throws IOException {
+        asysUsrElement uePage1 = new asysUsrElement(con);
+        String elementid = _elementId;
+        uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
+        String localfile = "C:\\apiDown\\" +elementid+ ".txt";     // 이 경로, 이름으로 다운됨.
+        int ret = uePage1.getContent(localfile);
+
+        if (ret != 0)
+            System.out.println("Error, download normal, " + uePage1.getLastError());
+        else
+            System.out.println("Success, download normal, " + uePage1.m_elementId);
+
+//        int ret = uePage1.getContent(output,"","");
+//        if (ret != 0)
+//            System.out.println("Error, download normal, " + uePage1.getLastError());
+//        else
+//            System.out.println("Success, download normal, " + uePage1.m_elementId);
+//        int data = 0;
+//        while((data = System.in.read()) !=-1){
+//            output.write(data);
+//
+//        output.close();
     }
 
     public void delete(asysConnectData con) {
@@ -88,5 +111,4 @@ public class AppService {
             System.out.println("Success, replace is done, " + uePage1.m_elementId);
         }
     }
-
 }

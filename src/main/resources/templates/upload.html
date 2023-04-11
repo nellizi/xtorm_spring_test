@@ -6,33 +6,6 @@
     <title>Title</title>
 </head>
 
-<script>
-
-function file_upload_test(){
-
-    var formData = new FormData($("#fileForm")[0]);
-    console.log("work?");
-    console.log(FormData);
-
-    $.ajax({
-        type : 'post',
-        url : '/test/file/uploadAjax',
-        data : formData,
-        processData : false,
-        dataType : "json",
-        contentType : false,
-        async    : false,
-        success : function(data) {
-            alert("파일 업로드 성공.");
-        },
-        error : function(error) {
-            alert("파일 업로드에 실패하였습니다.");
-
-        }
-    });
-}
-
-</script>
 
 <body>
 <h2>XTORM API TEST</h2>
