@@ -33,6 +33,7 @@ public class AppController {
         return "upload";
     }
 
+    //ajax version
     @GetMapping("/xtorm2")
     public String upload2() {
         return "upload2";
@@ -45,7 +46,7 @@ public class AppController {
 
         for(MultipartFile file : uploadfile){
             if(!file.isEmpty()){
-                appService.createStream(con, file.getInputStream());
+                appService.multipartUpload(con, file.getInputStream());
             }
         }
 
@@ -54,7 +55,6 @@ public class AppController {
 
 
 //ajax version
-
     @PostMapping("/multipartUpload.do")
     public String multipartUpload(MultipartHttpServletRequest request) throws Exception {
 
@@ -62,7 +62,7 @@ public class AppController {
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-                appService.createStream(con, file.getInputStream());
+                appService.multipartUpload(con, file.getInputStream());
                 System.out.println("ajax upload 성공");
             }
         }
@@ -78,7 +78,7 @@ public class AppController {
         return "upload";
     }
 
-
+    //ajax version
     @PostMapping("/multipartDownload.do")
     public String multipartDownload(MultipartHttpServletRequest request) throws Exception {
 
@@ -87,7 +87,7 @@ public class AppController {
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-               appService.downloadStream(con, file.getOriginalFilename());
+               appService.multipartDownload(con, file.getOriginalFilename());
 
             }
         }
@@ -102,6 +102,7 @@ public class AppController {
         return "upload";
     }
 
+    //ajax version
     @PostMapping("/multipartDelete.do")
     public String multipartDelete(MultipartHttpServletRequest request) throws Exception {
 
@@ -110,7 +111,7 @@ public class AppController {
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-                appService.deleteStream(con, file.getOriginalFilename());
+                appService.multipartDelete(con, file.getOriginalFilename());
 
             }
         }

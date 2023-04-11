@@ -1,0 +1,67 @@
+function ajax_upload(){
+//alert(".js파일 업로드는 된건가?");
+console.log("work?");
+var formData = new FormData($('#createForm')[0]);
+//console.log(formData);
+
+$.ajax({
+	type: 'POST',
+	enctype: 'multipart/form-data',
+	url: '/multipartUpload.do',
+	data: formData,
+	processData: false,
+	contentType: false,
+	cache: false,
+	success: function (result) {
+	    console.log(result);
+	    console.log("ajax 업로드 성공");
+	    alert("파일 업로드 성공.");
+	},
+	error: function (e) {
+	}
+});
+
+}
+
+
+function ajax_download(){
+var formData = new FormData($('#downloadForm')[0]);
+
+$.ajax({
+	type: 'POST',
+	enctype: 'multipart/form-data',
+	url: '/multipartDownload.do',
+	data: formData,
+	processData: false,
+	contentType: false,
+	cache: false,
+	success: function (result) {
+	    console.log("ajax 다운로드 성공");
+	    alert("파일 다운로드 성공.");
+	},
+	error: function (e) {
+	}
+});
+
+}
+
+function ajax_delete(){
+var formData = new FormData($('#deleteForm')[0]);
+
+$.ajax({
+	type: 'POST',
+	enctype: 'multipart/form-data',
+	url: '/multipartDelete.do',
+	data: formData,
+	processData: false,
+	contentType: false,
+	cache: false,
+	success: function (result) {
+	    console.log("ajax 삭제 성공");
+	    alert("파일 삭제 성공.");
+	},
+	error: function (e) {
+	}
+});
+
+}

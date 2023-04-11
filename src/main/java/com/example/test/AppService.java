@@ -28,7 +28,7 @@ public class AppService {
     }
 
 
-    public void createStream(asysConnectData con, InputStream _inputStream) throws IOException, IOException {
+    public void multipartUpload(asysConnectData con, InputStream _inputStream) throws IOException, IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = "ScanedImage";
         uePage1.m_cClassId = "BASIC";
@@ -63,7 +63,7 @@ public class AppService {
             System.out.println("Success, download normal, " + uePage1.m_elementId);
     }
 
-    public void downloadStream(asysConnectData con, String _elementId) throws IOException {
+    public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         String elementid = _elementId;
         uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
@@ -91,7 +91,7 @@ public class AppService {
     }
 
 
-    public void deleteStream(asysConnectData con, String _elementId) throws IOException {
+    public void multipartDelete(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         String elementid = _elementId;
         uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
