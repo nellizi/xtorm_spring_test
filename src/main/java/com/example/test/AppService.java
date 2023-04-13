@@ -69,13 +69,14 @@ public class AppService {
         uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
         String extention = "";
 
+
         int _ret = uePage1.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
         if (_ret != 0) {
             System.out.println("Error : " + uePage1.getLastError());
-        }
-        else {
+        } else {
             extention = uePage1.m_descr;
         }
+
 
         String localfile = "C:\\apiDown\\" +elementid +"."+ uePage1.m_descr;     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
