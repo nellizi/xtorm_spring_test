@@ -1,7 +1,9 @@
 package com.example.test;
 
 import com.windfire.apis.asysConnectData;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -46,28 +48,65 @@ public class AppController {
 
         for(MultipartFile file : uploadfile){
             if(!file.isEmpty()){
-                appService.multipartUpload(con, file.getInputStream());
+               // String extension = file.getOriginalFilename().split(".")[1];
+                String extension = "";
+                appService.retrieve(con);
             }
         }
 
-        return "upload";
+        return "upload2";
     }
 
 
 //ajax version
+//    @PostMapping("/multipartUpload.do")
+//    public String multipartUpload(MultipartHttpServletRequest request, Model model) throws Exception {
+//
+//        List<MultipartFile> fileList = request.getFiles("file");
+//
+//        for(MultipartFile file : fileList){
+//            if(!file.isEmpty()){
+//                String successMsg = "파일 업로드 성공";
+//                appService.multipartUpload(con, file.getInputStream());
+//                model.addAttribute("msg",successMsg);
+//                System.out.println("ajax upload 성공");
+//            }else{
+//                String failMsg = "선택 파일 없음";
+//                model.addAttribute("msg",failMsg);
+//            }
+//        }
+//        return "upload";
+//    }
+
+
+
     @PostMapping("/multipartUpload.do")
-    public String multipartUpload(MultipartHttpServletRequest request) throws Exception {
+    public String multipartUpload(MultipartHttpServletRequest request, Model model) throws Exception {
 
         List<MultipartFile> fileList = request.getFiles("file");
 
+        JSONObject resMap = new JSONObject();
+
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-                appService.multipartUpload(con, file.getInputStream());
+                System.out.println("originalFilename = "+file.getOriginalFilename());
+                String[] arr =  file.getOriginalFilename().split("\\.");
+
+//                String successMsg = "파일 업로드 성공";
+                appService.multipartUpload(con, file.getInputStream(),arr[1]);
+                System.out.println("getName = "+file.getName());
+                System.out.println("getClass" + file.getClass());
+ //              model.addAttribute("msg",successMsg);
                 System.out.println("ajax upload 성공");
+            }else{
+                String failMsg = "선택 파일 없음";
+                model.addAttribute("msg",failMsg);
             }
         }
         return "upload";
     }
+
+
 
 
     @PostMapping("/down")
@@ -80,18 +119,18 @@ public class AppController {
 
     //ajax version
     @PostMapping("/multipartDownload.do")
-    public String multipartDownload(MultipartHttpServletRequest request) throws Exception {
+    public String multipartDownload(MultipartHttpServletRequest request, Model model) throws Exception {
 
         List<MultipartFile> fileList = request.getFiles("file");
-        System.out.println("ajax 다운 url");
+//        String msg = "return값";
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
                appService.multipartDownload(con, file.getOriginalFilename());
-
             }
         }
-        return "upload";
+//        model.addAttribute("msg", msg);
+        return "upload2";
     }
 
     @PostMapping("/delete")

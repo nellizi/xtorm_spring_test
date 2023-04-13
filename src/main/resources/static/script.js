@@ -12,12 +12,11 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function (result) {
-	    console.log(result);
-	    console.log("ajax 업로드 성공");
-	    alert("파일 업로드 성공.");
+	success: function (msg) {
+	    alert(msg);
 	},
-	error: function (e) {
+	error: function (msg) {
+	    alert(msg);
 	}
 });
 
@@ -35,7 +34,7 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function (result) {
+	success: function () {
 	    console.log("ajax 다운로드 성공");
 	    alert("파일 다운로드 성공.");
 	},
@@ -56,7 +55,7 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function (result) {
+	success: function () {
 	    console.log("ajax 삭제 성공");
 	    alert("파일 삭제 성공.");
 	},
