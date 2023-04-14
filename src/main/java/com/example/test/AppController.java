@@ -41,43 +41,19 @@ public class AppController {
         return "upload2";
     }
 
-    @PostMapping("/upload")
-    public String uploadToXtorm(@RequestParam MultipartFile[] uploadfile) throws IOException {
-        System.out.println("upload");
-        System.out.println(uploadfile);
-
-        for(MultipartFile file : uploadfile){
-            if(!file.isEmpty()){
-               // String extension = file.getOriginalFilename().split(".")[1];
-                String extension = "";
-                appService.retrieve(con);
-            }
-        }
-
-        return "upload2";
-    }
-
-
-//ajax version
-//    @PostMapping("/multipartUpload.do")
-//    public String multipartUpload(MultipartHttpServletRequest request, Model model) throws Exception {
+//    @PostMapping("/upload")
+//    public String uploadToXtorm(@RequestParam MultipartFile[] uploadfile) throws IOException {
+//        System.out.println("upload");
+//        System.out.println(uploadfile);
 //
-//        List<MultipartFile> fileList = request.getFiles("file");
-//
-//        for(MultipartFile file : fileList){
+//        for(MultipartFile file : uploadfile){
 //            if(!file.isEmpty()){
-//                String successMsg = "파일 업로드 성공";
-//                appService.multipartUpload(con, file.getInputStream());
-//                model.addAttribute("msg",successMsg);
-//                System.out.println("ajax upload 성공");
-//            }else{
-//                String failMsg = "선택 파일 없음";
-//                model.addAttribute("msg",failMsg);
+//                String extension = "";
+//                appService.retrieve(con);
 //            }
 //        }
-//        return "upload";
+//        return "upload2";
 //    }
-
 
 
     @PostMapping("/multipartUpload.do")
@@ -92,12 +68,9 @@ public class AppController {
                 System.out.println("originalFilename = "+file.getOriginalFilename());
                 String[] arr =  file.getOriginalFilename().split("\\.");
 
-//                String successMsg = "파일 업로드 성공";
                 appService.multipartUpload(con, file.getInputStream(),arr[1]);
-                System.out.println("getName = "+file.getName());
-                System.out.println("getClass" + file.getClass());
- //              model.addAttribute("msg",successMsg);
-                System.out.println("ajax upload 성공");
+//              model.addAttribute("msg",successMsg);
+//              System.out.println("ajax upload 성공");
             }else{
                 String failMsg = "선택 파일 없음";
                 model.addAttribute("msg",failMsg);
@@ -122,8 +95,6 @@ public class AppController {
     public String multipartDownload(MultipartHttpServletRequest request, Model model) throws Exception {
 
         List<MultipartFile> fileList = request.getFiles("file");
-//        String msg = "return값";
-
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
                appService.multipartDownload(con, file.getOriginalFilename());

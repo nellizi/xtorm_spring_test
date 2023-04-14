@@ -1,8 +1,6 @@
 function ajax_upload(){
-//alert(".js파일 업로드는 된건가?");
 console.log("work?");
 var formData = new FormData($('#createForm')[0]);
-//console.log(formData);
 
 $.ajax({
 	type: 'POST',

@@ -10,10 +10,9 @@ import java.io.*;
 public class AppService {
     public void create(asysConnectData con, String filePath) {
         asysUsrElement uePage1 = new asysUsrElement(con);
-        //uePage1.m_localFile = "/createtest/hi.txt";
         uePage1.m_localFile = filePath;
         uePage1.m_descr = "filePath";
-        uePage1.m_cClassId = "BASIC";
+        uePage1.m_cClassId = "BASIC"; //xtorm 관리파일의 라이프사이클 정의 ID
         uePage1.m_userSClass = "SUPER";
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
@@ -27,11 +26,10 @@ public class AppService {
         }
     }
 
-
     public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws IOException, IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
-        uePage1.m_cClassId = "BASIC";
+        uePage1.m_cClassId = "TEST2_CC";
         uePage1.m_userSClass = "SUPER";
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
@@ -67,25 +65,22 @@ public class AppService {
         asysUsrElement uePage1 = new asysUsrElement(con);
         String elementid = _elementId;
         uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
-        String extention = "";
-
 
         int _ret = uePage1.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
-        if (_ret != 0) {
-            System.out.println("Error : " + uePage1.getLastError());
-        } else {
-            extention = uePage1.m_descr;
-        }
 
+//        if (_ret != 0) { System.out.println("Error : " + uePage1.getLastError());
+//        } else { extention = uePage1.m_descr;}
+
+        System.out.println("extention= " + uePage1.m_descr);
 
         String localfile = "C:\\apiDown\\" +elementid +"."+ uePage1.m_descr;     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
+
         if (ret != 0) {
             System.out.println("Error, failed to download, " + uePage1.getLastError());
-        }
-        else
+        } else {
             System.out.println("Success, download normal, " + uePage1.m_elementId);
-
+        }
     }
 
     public void delete(asysConnectData con) {
@@ -126,25 +121,27 @@ public class AppService {
         }
     }
 
-    public void retrieve(asysConnectData con){
-        asysUsrElement elem = new asysUsrElement(con);
-        String elementid = "2023041313495000";
-        int ret = elem.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
-        //int ret = elem.retrieveProps("", false, false);
-        // Check for errors - last message always in API object
-        if (ret != 0)
-            System.out.println("Error : " + elem.getLastError());
-        else {
-            System.out.println("Success : " + elem.m_elementId);
-            System.out.println("  descr : " + elem.m_descr);
-            System.out.println(" sclass : " + elem.m_userSClass);
-            System.out.println(" eclass : " + elem.m_eClassId);
 
-            System.out.println(" size   : " + elem.m_contentSize);
-            System.out.println(" date   : " + elem.m_contentDate);
 
-            elem.retrieveCClassId();
-            System.out.println(" cclass : " + elem.m_cClassId);
-        }
-    }
+//    public void retrieve(asysConnectData con){
+//        asysUsrElement elem = new asysUsrElement(con);
+//        String elementid = "2023041313495000";
+//        int ret = elem.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
+//        //int ret = elem.retrieveProps("", false, false);
+//        // Check for errors - last message always in API object
+//        if (ret != 0)
+//            System.out.println("Error : " + elem.getLastError());
+//        else {
+//            System.out.println("Success : " + elem.m_elementId);
+//            System.out.println("  descr : " + elem.m_descr);
+//            System.out.println(" sclass : " + elem.m_userSClass);
+//            System.out.println(" eclass : " + elem.m_eClassId);
+//
+//            System.out.println(" size   : " + elem.m_contentSize);
+//            System.out.println(" date   : " + elem.m_contentDate);
+//
+//            elem.retrieveCClassId();
+//            System.out.println(" cclass : " + elem.m_cClassId);
+//        }
+//    }
 }
