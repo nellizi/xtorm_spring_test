@@ -29,7 +29,7 @@ public class AppService {
     public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws IOException, IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
-        uePage1.m_cClassId = "TEST2_CC";
+        uePage1.m_cClassId = "BASIC";
         uePage1.m_userSClass = "SUPER";
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
