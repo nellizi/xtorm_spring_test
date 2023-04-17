@@ -9,7 +9,6 @@ import java.io.IOException;
 
 @SpringBootApplication
 @Configuration
-@EnableConfigurationProperties({PropertiesConfig.class})
 public class TestApplication {
 
 	public static void main(String[] args) throws IOException {

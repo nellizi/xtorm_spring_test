@@ -2,7 +2,9 @@ package com.example.test;
 
 import com.windfire.apis.asysConnectData;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,7 @@ import java.util.*;
 public class AppController {
 
 
+    @Autowired
     AppService appService = new AppService();
     private asysConnectData con = null;
 
