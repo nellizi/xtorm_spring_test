@@ -16,7 +16,6 @@ import java.util.*;
 @Controller
 public class AppController {
 
-
     @Autowired
     AppService appService = new AppService();
     private asysConnectData con = null;

@@ -26,24 +26,7 @@ public class _PropertiesConfig {
             System.out.println("파일 불러오기 오류 -> " + e);
             throw e;
         }
-//
-//        InputStream inputStream = new ClassPathResource("./src/main/resources").getInputStream();
-//        File file =File.createTempFile("applicaation",".properties");
-//        try {
-//            FileUtils.copyInputStreamToFile(inputStream, file);
-//
-//        } finally {
-//            IOUtils.closeQuietly(inputStream);
-//        }
-//
-//        prop = new Properties();
-//        try {
-//            prop.load(inputStream);
-//        } catch (IOException e) {
-//            System.out.println("파일 불러오기 오류 -> " + e);
-//            throw e;
-//        } new ClassPathResource("folder/resourceFile.properties").getInputStream();
-//
+
 
         hostname = prop.getProperty("hostname");
         username = prop.getProperty("username");

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 
 @SpringBootApplication
-@Configuration
+//@Configuration
 public class TestApplication {
 
 	public static void main(String[] args) throws IOException {
