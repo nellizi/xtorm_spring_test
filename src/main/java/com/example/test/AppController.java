@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.*;
 
@@ -21,13 +22,16 @@ public class AppController {
     private asysConnectData con = null;
 
     public AppController() {
+        System.out.println("new AppController(); 실행");
+
         _PropertiesConfig prop = null;
         try {
             prop = new _PropertiesConfig();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        con = new asysConnectData(prop.hostname, prop.port, prop.desc, prop.username, prop.password);
+        this.con = new asysConnectData(prop.hostname, prop.port, prop.desc, prop.username, prop.password);
+        System.out.println(con);
 
     }
 
@@ -48,6 +52,7 @@ public class AppController {
 //        System.out.println("upload");
 //        System.out.println(uploadfile);
 //
+
 //        for(MultipartFile file : uploadfile){
 //            if(!file.isEmpty()){
 //                String extension = "";
@@ -58,24 +63,51 @@ public class AppController {
 //    }
 
 
+
+
+    //MultipartFile test code
+
+//    @PostMapping("/uploadtest")
+//    public String saveFile(HttpServletRequest request) throws Exception {
+//
+//        if (productDomain == null) {
+//            throw new Exception("전달받은 폼 데이터가 없음");
+//        }
+//
+//        log.info("mutipartList = {}", productDomain.getItemImgList());
+//
+//        for (MultipartFile file : productDomain.getItemImgList()) {
+//            log.info("file name = {}", file.getOriginalFilename());
+//        }
+//        return "upload-form";
+//    }
+
+
     @PostMapping("/multipartUpload.do")
     public String multipartUpload(MultipartHttpServletRequest request, Model model) throws Exception {
-
+        System.out.println(con);
+         new AppController();
+        System.out.println(con);
         List<MultipartFile> fileList = request.getFiles("file");
-
-        JSONObject resMap = new JSONObject();
+//        HashMap<String,String> msg = new HashMap<String,String>();
 
         for(MultipartFile file : fileList){
             if(!file.isEmpty()){
-                System.out.println("originalFilename = "+file.getOriginalFilename());
+//                System.out.println("originalFilename = "+file.getOriginalFilename());
                 String[] arr =  file.getOriginalFilename().split("\\.");
 
-                appService.multipartUpload(con, file.getInputStream(),arr[1]);
+                for(int i=0; i<50; i++) {
+                    appService.multipartUpload(con, file.getInputStream(), arr[1]);
+                    // con = appService.discon(con);
+                }
+                System.out.println(con);
 //              model.addAttribute("msg",successMsg);
+//                msg.put("message","업로드 성공");
 //              System.out.println("ajax upload 성공");
             }else{
                 String failMsg = "선택 파일 없음";
                 model.addAttribute("msg",failMsg);
+                System.out.println(failMsg);
             }
         }
         return "upload";
