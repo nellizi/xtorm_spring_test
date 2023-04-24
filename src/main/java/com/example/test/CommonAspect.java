@@ -2,10 +2,11 @@ package com.example.test;
 
 import com.windfire.apis.asysConnectData;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.boot.autoconfigure.web.servlet.ConditionalOnMissingFilterBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,15 +16,20 @@ import java.io.IOException;
 public class CommonAspect {
 
     asysConnectData con = null;
+    @Autowired
+    AppController appController;
 
     public asysConnectData getCon() {
         return this.con;
     }
 
+    @Pointcut("execution(* com.example.test.AppController.post*(..))")
+    public void pointCut(){}
+
     @Before("pointCut()")
     public void CommonAspect(JoinPoint joinPoint) {
 
-        System.out.println("before work");
+        System.out.println("con before work: "+ con);
 
         _PropertiesConfig prop = null;
         try {
@@ -33,34 +39,19 @@ public class CommonAspect {
         }
         con = new asysConnectData(prop.hostname, prop.port, prop.desc, prop.username, prop.password);
         System.out.println("PointCut: "+ con);
-        new AppController().setCon(con);
+        appController.setCon(con);
     }
-    @Pointcut("execution(* com.example.test..*.*(..))")
-    public void pointCut(){}
-
-//    @Before("pointCut()")
-//    public void createConnection(JoinPoint joinPoint) {
-//
-//        System.out.println("before work");
-//
-//        _PropertiesConfig prop = null;
-//        try {
-//            prop = new _PropertiesConfig();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        con = new asysConnectData(prop.hostname, prop.port, prop.desc, prop.username, prop.password);
-//        System.out.println(con);
-//    }
 
 
-
-    public void disconnect(asysConnectData con) {
+    @After("pointCut()")
+    public void disconnect(JoinPoint joinPoint) {
         System.out.println("after work");
 
         if (con != null) {
             con.close();
             this.con = null;
+            appController.setCon(con);
+            System.out.println("con in after: "+con);
         }
     }
 

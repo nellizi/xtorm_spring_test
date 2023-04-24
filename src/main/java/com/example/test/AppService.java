@@ -27,7 +27,7 @@ public class AppService {
     }
 
     public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws IOException, IOException {
-        System.out.println(con);
+//        System.out.println(con);
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
         uePage1.m_cClassId = "BASIC";
