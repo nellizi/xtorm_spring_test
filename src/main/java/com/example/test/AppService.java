@@ -30,7 +30,7 @@ public class AppService {
         System.out.println(con);
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
-        uePage1.m_cClassId = "TEST2_CC";
+        uePage1.m_cClassId = "BASIC";
         uePage1.m_userSClass = "SUPER";
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
