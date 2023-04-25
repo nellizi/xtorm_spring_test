@@ -23,7 +23,7 @@ public class CommonAspect {
         return this.con;
     }
 
-    @Pointcut("execution(* com.example.test.AppController.post*(..))")
+    @Pointcut("execution(* com.example.test.AppController.multi*(..))")
     public void pointCut(){}
 
     @Before("pointCut()")
@@ -42,17 +42,15 @@ public class CommonAspect {
         appController.setCon(con);
     }
 
-
     @After("pointCut()")
     public void disconnect(JoinPoint joinPoint) {
         System.out.println("after work");
 
         if (con != null) {
             con.close();
-            this.con = null;
+            //this.con = null;
             appController.setCon(con);
             System.out.println("con in after: "+con);
         }
     }
-
 }

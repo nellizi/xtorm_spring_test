@@ -27,13 +27,16 @@ public class AppService {
     }
 
     public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws IOException, IOException {
-//        System.out.println(con);
+
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
         uePage1.m_cClassId = "BASIC";
         uePage1.m_userSClass = "SUPER";
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
+        String path = _inputStream.toString();
+        System.out.println("inputstream.toString"+path);
+
 
         InputStream inputStream = _inputStream;
         try {
@@ -49,18 +52,18 @@ public class AppService {
         }
     }
 
-    public void download(asysConnectData con ){
-        asysUsrElement uePage1 = new asysUsrElement(con);
-        String elementId = "2023040609335700";
-        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
-        String localfile = "C:\\test\\0406_2down.txt";     // 이 경로, 이름으로 다운됨.
-        int ret = uePage1.getContent(localfile);
-
-        if (ret != 0)
-            System.out.println("Error, download normal, " + uePage1.getLastError());
-        else
-            System.out.println("Success, download normal, " + uePage1.m_elementId);
-    }
+//    public void download(asysConnectData con ){
+//        asysUsrElement uePage1 = new asysUsrElement(con);
+//        String elementId = "2023040609335700";
+//        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
+//        String localfile = "C:\\test\\0406_2down.txt";
+//        int ret = uePage1.getContent(localfile);
+//
+//        if (ret != 0)
+//            System.out.println("Error, download normal, " + uePage1.getLastError());
+//        else
+//            System.out.println("Success, download normal, " + uePage1.m_elementId);
+//    }
 
     public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
@@ -74,7 +77,7 @@ public class AppService {
 
         System.out.println("extention= " + uePage1.m_descr);
 
-        String localfile = "C:\\apiDown\\" +elementid +"."+ uePage1.m_descr;     // 이 경로, 이름으로 다운됨.
+        String localfile = "C:\\XTORMTEST\\" +elementid +"."+ uePage1.m_descr;     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
 
         if (ret != 0) {
@@ -84,18 +87,18 @@ public class AppService {
         }
     }
 
-    public void delete(asysConnectData con) {
-        asysUsrElement uePage1 = new asysUsrElement(con);
-        String elementId = "2023040609300100";
-        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
-        int ret = uePage1.delete();
-
-        if (ret != 0) {
-            System.out.println("Error, failed to delete, " + uePage1.getLastError());
-        } else {
-            System.out.println("Success, delete is done, " + uePage1.m_elementId);
-        }
-    }
+//    public void delete(asysConnectData con) {
+//        asysUsrElement uePage1 = new asysUsrElement(con);
+//        String elementId = "2023040609300100";
+//        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
+//        int ret = uePage1.delete();
+//
+//        if (ret != 0) {
+//            System.out.println("Error, failed to delete, " + uePage1.getLastError());
+//        } else {
+//            System.out.println("Success, delete is done, " + uePage1.m_elementId);
+//        }
+//    }
 
     public void multipartDelete(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
@@ -123,7 +126,6 @@ public class AppService {
     }
 
 
-
 //    public void retrieve(asysConnectData con){
 //        asysUsrElement elem = new asysUsrElement(con);
 //        String elementid = "2023041313495000";
@@ -146,13 +148,15 @@ public class AppService {
 //        }
 //    }
 
-    asysConnectData discon(asysConnectData con) {
-        if(con != null) {
-            con.close();
-            con = null;
-        }
-        return con;
-    }
 
+
+
+//    asysConnectData discon(asysConnectData con) {
+//        if(con != null) {
+//            con.close();
+//            con = null;
+//        }
+//        return con;
+//    }
 
 }
