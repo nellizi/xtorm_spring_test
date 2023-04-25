@@ -1,5 +1,7 @@
 function ajax_upload(){
+
 console.log("work?");
+alert("alert");
 var formData = new FormData($('#createForm')[0]);
 
 $.ajax({
@@ -10,11 +12,11 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function (msg) {
-	    alert(msg);
+	success: function (data) {
+	    alert(data.msg);
 	},
-	error: function (msg) {
-	    alert(msg);
+	error: function (data) {
+	    alert(data.fail);
 	}
 });
 

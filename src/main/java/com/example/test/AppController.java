@@ -34,45 +34,24 @@ public class AppController {
     }
 
     @PostMapping("/multipartUpload.do")
-    public String multipartUpload(MultipartHttpServletRequest request,@RequestParam("file") MultipartFile[] files ) throws Exception {
+    @ResponseBody
+    public  HashMap<String,String> multipartUpload(MultipartHttpServletRequest request,@RequestParam("file") MultipartFile[] files ) throws Exception {
 
         List<MultipartFile> fileList = request.getFiles("file");
-//        HashMap<String,String> msg = new HashMap<String,String>();
-        ModelAndView modelAndView = new ModelAndView();
+        HashMap<String,String> map = new HashMap<String,String>();
 
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 String[] arr = file.getOriginalFilename().split("\\.");
                 appService.multipartUpload(con, file.getInputStream(), arr[1]);
-               // modelAndView.add
+                map.put("msg","성공");
             } else {
-                String failMsg = "선택 파일 없음";
-                System.out.println(failMsg);
+                System.out.println("선택 파일 없음");
+                map.put("msg","선택 파일 없음");
             }
         }
-         return "upload";
+         return map;
     }
-
-
-//    @PostMapping("/multipartUpload.do")
-//    public String multipartUpload(MultipartFile file) throws Exception {
-//
-////        List<MultipartFile> fileList = request.getFiles("file");
-////        HashMap<String,String> msg = new HashMap<String,String>();
-//        ModelAndView modelAndView = new ModelAndView();
-//
-////        for (MultipartFile file : fileList) {
-//            if (!file.isEmpty()) {
-//                String[] arr = file.getOriginalFilename().split("\\.");
-//                appService.multipartUpload(con, file.getInputStream(), arr[1]);
-//                // modelAndView.add
-//            } else {
-//                String failMsg = "선택 파일 없음";
-//                System.out.println(failMsg);
-//            }
-////        }
-//        return "upload";
-//    }
 
 
 //    @PostMapping("/down")
