@@ -1,7 +1,5 @@
 function ajax_upload(){
 
-console.log("work?");
-alert("alert");
 var formData = new FormData($('#createForm')[0]);
 
 $.ajax({
@@ -22,7 +20,6 @@ $.ajax({
 
 }
 
-
 function ajax_download(){
 var formData = new FormData($('#downloadForm')[0]);
 
@@ -34,10 +31,9 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function () {
-	    console.log("ajax 다운로드 성공");
-	    alert("파일 다운로드 성공.");
-	},
+	success: function (data) {
+    	    alert(data.msg);
+    	},
 	error: function (e) {
 	}
 });
@@ -55,10 +51,9 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function () {
-	    console.log("ajax 삭제 성공");
-	    alert("파일 삭제 성공.");
-	},
+	success: function (data) {
+	    alert(data.msg);
+           	},
 	error: function (e) {
 	}
 });

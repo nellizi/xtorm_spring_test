@@ -28,7 +28,6 @@ public class CommonAspect {
 
     @Before("pointCut()")
     public void CommonAspect(JoinPoint joinPoint) {
-
         System.out.println("con before work: "+ con);
 
         _PropertiesConfig prop = null;
@@ -45,12 +44,11 @@ public class CommonAspect {
     @After("pointCut()")
     public void disconnect(JoinPoint joinPoint) {
         System.out.println("after work");
-
         if (con != null) {
             con.close();
-            //this.con = null;
+            this.con = null;
             appController.setCon(con);
-            System.out.println("con in after: "+con);
+            System.out.println("con in AfterWork: "+con);
         }
     }
 }

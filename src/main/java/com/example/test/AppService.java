@@ -35,8 +35,6 @@ public class AppService {
         uePage1.m_eClassId = "IMAGE";
         String gateway = "XTORM_MAIN";
         String path = _inputStream.toString();
-        System.out.println("inputstream.toString"+path);
-
 
         InputStream inputStream = _inputStream;
         try {
@@ -149,14 +147,5 @@ public class AppService {
 //    }
 
 
-
-
-//    asysConnectData discon(asysConnectData con) {
-//        if(con != null) {
-//            con.close();
-//            con = null;
-//        }
-//        return con;
-//    }
 
 }
