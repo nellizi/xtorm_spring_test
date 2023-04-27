@@ -37,15 +37,15 @@ public class CommonAspect {
             throw new RuntimeException(e);
         }
         con = new asysConnectData(prop.hostname, prop.port, prop.desc, prop.username, prop.password);
-        System.out.println("PointCut: "+ con);
+        System.out.println("con after Before_PointCut: "+ con);
         appController.setCon(con);
     }
 
     @After("pointCut()")
     public void disconnect(JoinPoint joinPoint) {
-        System.out.println("after work");
         if (con != null) {
             con.close();
+           // System.out.println("con before setCon: "+con);
             this.con = null;
             appController.setCon(con);
             System.out.println("con in AfterWork: "+con);

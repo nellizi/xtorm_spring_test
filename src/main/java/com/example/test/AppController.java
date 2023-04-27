@@ -27,7 +27,7 @@ public class AppController {
 
     @PostMapping("/multipartUpload.do")
     @ResponseBody
-    public HashMap<String,String> multipartUpload(@RequestParam("file") MultipartFile[] files ) throws Exception {
+    public HashMap<String,String> multipartUpload(@RequestParam("file") MultipartFile[] files) throws Exception {
        //MultipartHttpServletRequest request,
         // List<MultipartFile> fileList = request.getFiles("file");
         HashMap<String,String> map = new HashMap<String,String>();
@@ -47,11 +47,11 @@ public class AppController {
     //ajax version
     @PostMapping("/multipartDownload.do")
     @ResponseBody
-    public HashMap<String,String> multipartDownload(MultipartHttpServletRequest request) throws Exception {
+    public HashMap<String,String> multipartDownload(@RequestParam("file") MultipartFile[] files) throws Exception {
 
         HashMap<String,String> map = new HashMap<String,String>();
-        List<MultipartFile> fileList = request.getFiles("file");
-        for (MultipartFile file : fileList) {
+//        List<MultipartFile> fileList = request.getFiles("file");
+        for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 appService.multipartDownload(con, file.getOriginalFilename());
             }else {
@@ -64,12 +64,12 @@ public class AppController {
     //ajax version
     @PostMapping("/multipartDelete.do")
     @ResponseBody
-    public HashMap<String,String> multipartDelete(MultipartHttpServletRequest request) throws Exception {
+    public HashMap<String,String> multipartDelete(@RequestParam("file") MultipartFile[] files) throws Exception {
 
         HashMap<String,String> map = new HashMap<String,String>();
-        List<MultipartFile> fileList = request.getFiles("file");
+//        List<MultipartFile> fileList = request.getFiles("file");
 
-        for (MultipartFile file : fileList) {
+        for (MultipartFile file : files) {
             if (!file.isEmpty()) {
                 appService.multipartDelete(con, file.getOriginalFilename());
             }else {
