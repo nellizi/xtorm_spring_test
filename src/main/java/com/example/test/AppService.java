@@ -50,19 +50,6 @@ public class AppService {
         }
     }
 
-//    public void download(asysConnectData con ){
-//        asysUsrElement uePage1 = new asysUsrElement(con);
-//        String elementId = "2023040609335700";
-//        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
-//        String localfile = "C:\\test\\0406_2down.txt";
-//        int ret = uePage1.getContent(localfile);
-//
-//        if (ret != 0)
-//            System.out.println("Error, download normal, " + uePage1.getLastError());
-//        else
-//            System.out.println("Success, download normal, " + uePage1.m_elementId);
-//    }
-
     public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
         String elementid = _elementId;
@@ -73,7 +60,7 @@ public class AppService {
 //        if (_ret != 0) { System.out.println("Error : " + uePage1.getLastError());
 //        } else { extention = uePage1.m_descr;}
 
-        System.out.println("extention= " + uePage1.m_descr);
+//        System.out.println("extention= " + uePage1.m_descr);
 
         String localfile = "C:\\XTORMTEST\\" +elementid +"."+ uePage1.m_descr;     // 이 경로, 이름으로 다운됨.
         int ret = uePage1.getContent(localfile);
@@ -84,19 +71,6 @@ public class AppService {
             System.out.println("Success, download normal, " + uePage1.m_elementId);
         }
     }
-
-//    public void delete(asysConnectData con) {
-//        asysUsrElement uePage1 = new asysUsrElement(con);
-//        String elementId = "2023040609300100";
-//        uePage1.m_elementId = "XTORM_MAIN::" + elementId + "::IMAGE";
-//        int ret = uePage1.delete();
-//
-//        if (ret != 0) {
-//            System.out.println("Error, failed to delete, " + uePage1.getLastError());
-//        } else {
-//            System.out.println("Success, delete is done, " + uePage1.m_elementId);
-//        }
-//    }
 
     public void multipartDelete(asysConnectData con, String _elementId) throws IOException {
         asysUsrElement uePage1 = new asysUsrElement(con);
@@ -122,30 +96,5 @@ public class AppService {
             System.out.println("Success, replace is done, " + uePage1.m_elementId);
         }
     }
-
-
-//    public void retrieve(asysConnectData con){
-//        asysUsrElement elem = new asysUsrElement(con);
-//        String elementid = "2023041313495000";
-//        int ret = elem.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
-//        //int ret = elem.retrieveProps("", false, false);
-//        // Check for errors - last message always in API object
-//        if (ret != 0)
-//            System.out.println("Error : " + elem.getLastError());
-//        else {
-//            System.out.println("Success : " + elem.m_elementId);
-//            System.out.println("  descr : " + elem.m_descr);
-//            System.out.println(" sclass : " + elem.m_userSClass);
-//            System.out.println(" eclass : " + elem.m_eClassId);
-//
-//            System.out.println(" size   : " + elem.m_contentSize);
-//            System.out.println(" date   : " + elem.m_contentDate);
-//
-//            elem.retrieveCClassId();
-//            System.out.println(" cclass : " + elem.m_cClassId);
-//        }
-//    }
-
-
 
 }
