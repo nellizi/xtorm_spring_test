@@ -1,4 +1,3 @@
-
 $(document).ready(function()
 		// input file 파일 첨부시 fileCheck 함수 실행
 		{
