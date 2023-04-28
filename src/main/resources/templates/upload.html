@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/script_2.js"></script>
+    <script src="/script.js"></script>
 </head>
 <body>
 
@@ -26,8 +27,16 @@
         </div>
         <button type="submit" style="border: 1px solid #ddd; outline: none;">전송</button>
     </form>
+
+    <form id="downloadForm" enctype="multipart/form-data" onsubmit="ajax_download();">
+        <input type="file" name="file" multiple="true" >
+        <input type="submit" value="다운로드"/>
+    </form>
+    &nbsp; &nbsp; &nbsp;
+    <form id="deleteForm" enctype="multipart/form-data" onsubmit="ajax_delete();">
+        <input type="file" name="file" multiple="true" >
+        <input type="submit" value="삭제"/>
+    </form>
 </div>
-
-
 </body>
 </html>
