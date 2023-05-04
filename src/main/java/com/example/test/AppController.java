@@ -30,12 +30,13 @@ public class AppController {
 
     @PostMapping("/multipartUpload.do")
     @ResponseBody
-    public HashMap<String,String> multipartUpload(@RequestParam("file")  List<MultipartFile> files) throws Exception {
+    public HashMap<String,String> multipartUpload(@RequestParam(value="file")  List<MultipartFile> files) throws Exception {
 
         HashMap<String,String> map = new HashMap<String,String>();
 
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {
+                System.out.println("AppController");
                 String[] arr = file.getOriginalFilename().split("\\.");
                 appService.multipartUpload(con, file.getInputStream(), arr[1]);
                 map.put("msg","업로드 완료");
@@ -51,6 +52,7 @@ public class AppController {
     public HashMap<String,String> multipartDownload(@RequestParam("file") MultipartFile[] files) throws Exception {
 
         HashMap<String,String> map = new HashMap<String,String>();
+        System.out.println("download in controller");
 
         for (MultipartFile file : files) {
             if (!file.isEmpty()) {

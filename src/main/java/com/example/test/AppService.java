@@ -8,25 +8,25 @@ import java.io.*;
 
 @Service
 public class AppService {
-    public void create(asysConnectData con, String filePath) {
-        asysUsrElement uePage1 = new asysUsrElement(con);
-        uePage1.m_localFile = filePath;
-        uePage1.m_descr = "filePath";
-        uePage1.m_cClassId = "BASIC"; //xtorm 관리파일의 라이프사이클 정의 ID
-        uePage1.m_userSClass = "SUPER";
-        uePage1.m_eClassId = "IMAGE";
-        String gateway = "XTORM_MAIN";
+//    public void create(asysConnectData con, String filePath) {
+//        asysUsrElement uePage1 = new asysUsrElement(con);
+//        uePage1.m_localFile = filePath;
+//        uePage1.m_descr = "filePath";
+//        uePage1.m_cClassId = "BASIC"; //xtorm 관리파일의 라이프사이클 정의 ID
+//        uePage1.m_userSClass = "SUPER";
+//        uePage1.m_eClassId = "IMAGE";
+//        String gateway = "XTORM_MAIN";
+//
+//        int ret = uePage1.create(gateway);
+//
+//        if (ret != 0) {
+//            System.out.println("Error, create normal, " + uePage1.getLastError());
+//        } else {
+//            System.out.println("Success, create normal, " + uePage1.m_elementId);
+//        }
+//    }
 
-        int ret = uePage1.create(gateway);
-
-        if (ret != 0) {
-            System.out.println("Error, create normal, " + uePage1.getLastError());
-        } else {
-            System.out.println("Success, create normal, " + uePage1.m_elementId);
-        }
-    }
-
-    public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws IOException, IOException {
+    public void multipartUpload(asysConnectData con, InputStream _inputStream, String extension) throws  IOException {
 
         asysUsrElement uePage1 = new asysUsrElement(con);
         uePage1.m_descr = extension;
@@ -36,9 +36,9 @@ public class AppService {
         String gateway = "XTORM_MAIN";
         String path = _inputStream.toString();
 
-        InputStream inputStream = _inputStream;
+//        InputStream inputStream = _inputStream;
         try {
-            int ret = uePage1.create(gateway, inputStream, "", "");
+            int ret = uePage1.create(gateway, _inputStream, "", "");
             if (ret != 0)
                 System.out.println("Error, create stream, " + uePage1.getLastError());
             else
@@ -46,15 +46,18 @@ public class AppService {
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
-            inputStream.close();
+            _inputStream.close();
         }
     }
 
     public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
+        System.out.println("download in service");
+
         asysUsrElement uePage1 = new asysUsrElement(con);
         String elementid = _elementId;
         uePage1.m_elementId = "XTORM_MAIN::" + elementid + "::IMAGE";
 
+        // uePage1.m_descr 불러오기 위함
         int _ret = uePage1.retrieveProps("XTORM_MAIN::"+elementid+"::IMAGE", true, true);
 
 //        if (_ret != 0) { System.out.println("Error : " + uePage1.getLastError());

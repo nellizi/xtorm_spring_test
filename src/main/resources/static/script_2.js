@@ -3,7 +3,6 @@ $(document).ready(function()
 		{
 			$("#input_file").on("change", fileCheck);
 		});
-
 /**
  * 첨부파일로직
  */

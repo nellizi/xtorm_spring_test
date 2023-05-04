@@ -1,5 +1,7 @@
 function ajax_upload(){
 
+console.log("work?");
+alert("alert");
 var formData = new FormData($('#createForm')[0]);
 
 $.ajax({
@@ -20,6 +22,7 @@ $.ajax({
 
 }
 
+
 function ajax_download(){
 var formData = new FormData($('#downloadForm')[0]);
 
@@ -34,8 +37,9 @@ $.ajax({
 	success: function (data) {
     	    alert(data.msg);
     	},
-	error: function (e) {
-	}
+    	error: function (data) {
+    	    alert(data.fail);
+    	}
 });
 
 }
@@ -51,10 +55,11 @@ $.ajax({
 	processData: false,
 	contentType: false,
 	cache: false,
-	success: function (data) {
+success: function (data) {
 	    alert(data.msg);
-           	},
-	error: function (e) {
+	},
+	error: function (data) {
+	    alert(data.fail);
 	}
 });
 

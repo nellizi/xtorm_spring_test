@@ -45,7 +45,6 @@ public class CommonAspect {
     public void disconnect(JoinPoint joinPoint) {
         if (con != null) {
             con.close();
-           // System.out.println("con before setCon: "+con);
             this.con = null;
             appController.setCon(con);
             System.out.println("con in AfterWork: "+con);
