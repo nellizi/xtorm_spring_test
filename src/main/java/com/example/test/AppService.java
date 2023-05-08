@@ -2,12 +2,15 @@ package com.example.test;
 
 import com.windfire.apis.asys.asysUsrElement;
 import com.windfire.apis.asysConnectData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 
 @Service
 public class AppService {
+    @Autowired
+    AppRepository appRepository;
 //    public void create(asysConnectData con, String filePath) {
 //        asysUsrElement uePage1 = new asysUsrElement(con);
 //        uePage1.m_localFile = filePath;
@@ -41,13 +44,28 @@ public class AppService {
             int ret = uePage1.create(gateway, _inputStream, "", "");
             if (ret != 0)
                 System.out.println("Error, create stream, " + uePage1.getLastError());
-            else
+            else {
                 System.out.println("Success, create stream, " + uePage1.m_elementId);
+                String[] arr = uePage1.m_elementId.split("::");
+
+             createEntity(arr[1]);
+            }
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
             _inputStream.close();
         }
+    }
+
+    private void createEntity(String elementId) {
+        BizEntity bizEntity = new BizEntity();
+        bizEntity.setElementId(elementId);
+
+        System.out.println("createEntity: "+elementId);
+
+        String id = appRepository.findByElementId(elementId);
+        System.out.println("=========id : "+id +"==========");
+
     }
 
     public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
