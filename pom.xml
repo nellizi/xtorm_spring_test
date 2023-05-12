@@ -72,7 +72,7 @@
 			<artifactId>test</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/xtormapi_20181220.jar</systemPath>
+			<systemPath>${project.basedir}/lib/xtormapi_20210723.jar</systemPath>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
