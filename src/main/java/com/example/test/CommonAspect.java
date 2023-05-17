@@ -1,5 +1,6 @@
 package com.example.test;
 
+import com.example.test.config._PropertiesConfig;
 import com.windfire.apis.asysConnectData;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;

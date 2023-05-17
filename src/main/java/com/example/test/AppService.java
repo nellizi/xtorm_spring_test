@@ -9,8 +9,8 @@ import java.io.*;
 
 @Service
 public class AppService {
-    @Autowired
-    AppRepository appRepository;
+//    @Autowired
+//    AppRepository appRepository;
 //    public void create(asysConnectData con, String filePath) {
 //        asysUsrElement uePage1 = new asysUsrElement(con);
 //        uePage1.m_localFile = filePath;
@@ -47,8 +47,7 @@ public class AppService {
             else {
                 System.out.println("Success, create stream, " + uePage1.m_elementId);
                 String[] arr = uePage1.m_elementId.split("::");
-
-             createEntity(arr[1]);
+//             createEntity(arr[1]);
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -57,16 +56,16 @@ public class AppService {
         }
     }
 
-    private void createEntity(String elementId) {
-        BizEntity bizEntity = new BizEntity();
-        bizEntity.setElementId(elementId);
-
-        System.out.println("createEntity: "+elementId);
-
-        String id = appRepository.findByElementId(elementId);
-        System.out.println("=========id : "+id +"==========");
-
-    }
+//    private void createEntity(String elementId) {
+//        BizEntity bizEntity = new BizEntity();
+//        bizEntity.setElementId(elementId);
+//
+//        System.out.println("createEntity: "+elementId);
+//
+//        String id = appRepository.findByElementId(elementId);
+//        System.out.println("=========id : "+id +"==========");
+//
+//    }
 
     public void multipartDownload(asysConnectData con, String _elementId) throws IOException {
         System.out.println("download in service");

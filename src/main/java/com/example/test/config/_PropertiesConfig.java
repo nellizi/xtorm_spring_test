@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.config;
 
 import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
